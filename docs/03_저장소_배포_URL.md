@@ -2,7 +2,7 @@
 
 | 항목 | URL | 상태 |
 | --- | --- | --- |
-| 소스코드 저장소 | [ 미정 ] | 아직 커밋·업로드 전 (로컬 Git 저장소에 커밋 0개, 원격 저장소 없음) |
+| 소스코드 저장소 | https://github.com/gitone912/flow-main | push 완료 |
 | 배포 URL | https://flow-main-rouge.vercel.app | 배포 완료 (Vercel) |
 | 백엔드 API | https://crescent-hanky-doorbell.ngrok-free.dev | ngrok 터널 — 이 PC에서 API 서버와 ngrok이 실행 중일 때만 동작 |
 | API 문서 (Swagger) | https://crescent-hanky-doorbell.ngrok-free.dev/api/docs | OpenAPI 3.1 · 원본 JSON: `/api/openapi.json` · 처음 접속 시 ngrok 안내 화면에서 “Visit Site” 클릭 |

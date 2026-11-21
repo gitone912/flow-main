@@ -2,7 +2,7 @@
 
 | 항목 | URL |
 | --- | --- |
-| Source Code Repository URL (소스코드 저장소) | [ 미정 — GitHub 저장소 생성 · push 후 입력 ] |
+| Source Code Repository URL (소스코드 저장소) | https://github.com/gitone912/flow-main |
 | Deployment URL (배포 URL) | https://flow-main-rouge.vercel.app |
 
 참고 (필수 아님)
