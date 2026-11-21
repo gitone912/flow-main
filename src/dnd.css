@@ -1,0 +1,67 @@
+/* Drag-to-assign (Compare step). Animates transform/opacity only; reduced motion turns the motion off. */
+
+.dnd-token-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dnd-token {
+  position: relative; display: flex; align-items: center; gap: 10px; flex: 1 1 260px; min-width: 0; max-width: 520px;
+  padding: 10px 14px 10px 8px; border-radius: 14px; border: 1px dashed var(--primary); background: var(--primary-soft);
+  color: var(--text); cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; -webkit-touch-callout: none;
+  box-shadow: var(--shadow); transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
+}
+.dnd-token:hover { transform: translateY(-1px); }
+.dnd-token:active { cursor: grabbing; }
+.dnd-token:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.dnd-token.is-lifted { transform: translateY(-2px) scale(1.01); border-style: solid; }
+.dnd-token-row.is-active .dnd-token:not(.is-ghost) { opacity: .72; }
+.dnd-grip { display: grid; place-items: center; flex: none; width: 28px; height: 36px; border-radius: 8px; color: var(--primary); }
+.dnd-token-main { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.dnd-token-main strong { overflow: hidden; font-size: 14px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.dnd-token-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; color: var(--text-2); }
+.dnd-token-meta span { display: inline-flex; align-items: center; gap: 4px; }
+.dnd-token-hint { flex: none; font-size: 12px; font-weight: 600; color: var(--primary); }
+.dnd-cancel { flex: none; }
+
+/* Touch ghost that follows the finger (portalled to body). */
+.dnd-ghost { position: fixed; top: 0; left: 0; z-index: 1000; pointer-events: none; will-change: transform; }
+.dnd-token.is-ghost { width: min(300px, 80vw); opacity: .95; transform: rotate(-2deg) scale(1.02); box-shadow: var(--shadow-lg); }
+.dnd-ghost .dnd-token-hint { display: none; }
+
+/* Drop zones */
+.cand-grid .cand.dnd-ok::after, .cand-grid .cand.dnd-blocked::after {
+  content: ''; position: absolute; inset: -1px; z-index: 2; border-radius: inherit; pointer-events: none;
+  border: 2px dashed var(--primary); opacity: .55; transition: opacity var(--t-fast) var(--ease);
+}
+.cand-grid .cand.dnd-blocked { opacity: .55; }
+.cand-grid .cand.dnd-blocked::after { border-color: var(--risk-line); opacity: 1; }
+.cand-grid .cand.dnd-blocked.dnd-over { cursor: no-drop; }
+.cand-grid .cand.dnd-ok.dnd-over { transform: translateY(-4px) scale(1.015); z-index: 3; }
+.cand-grid .cand.dnd-ok.dnd-over::after { border-style: solid; opacity: 1; box-shadow: 0 0 0 3px var(--primary-soft); }
+.cand-grid .cand.dnd-blocked.dnd-over::after { border-style: solid; }
+
+.dnd-note {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin: -4px 0 0; padding: 8px 10px; border-radius: 10px;
+  font-size: 12.5px; line-height: 1.45; animation: dnd-in var(--t-fast) var(--ease) both;
+}
+.dnd-note b { font-weight: 700; }
+.dnd-note.ok { background: var(--primary-soft); color: var(--text); }
+.dnd-note.ok b { color: var(--primary); }
+.dnd-note.blocked { background: var(--risk-soft); color: var(--text); }
+.dnd-note.blocked b { color: var(--risk); }
+
+/* Confirm in the decision dock after a drop */
+.decision-dock.dnd-confirm { flex-wrap: wrap; border-color: var(--primary); }
+.decision-dock.dnd-confirm .dock-text { flex: 1 1 180px; min-width: 0; }
+.dnd-confirm-actions { display: flex; gap: 8px; margin-left: auto; animation: dnd-in var(--t-fast) var(--ease) both; }
+
+@keyframes dnd-in { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 560px) {
+  .dnd-token { flex-basis: 100%; flex-wrap: wrap; max-width: none; }
+  .dnd-token-hint { width: 100%; padding-left: 38px; font-size: 11.5px; }
+  .dnd-confirm-actions { width: 100%; justify-content: flex-end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dnd-token, .dnd-token.is-lifted, .dnd-token:hover, .dnd-token.is-ghost,
+  .cand-grid .cand.dnd-ok.dnd-over { transform: none; transition: none; }
+  .dnd-note, .dnd-confirm-actions { animation: none; }
+}

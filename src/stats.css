@@ -1,0 +1,51 @@
+/* Reports page: interactive statistical charts (owned by the Reports chart agent). */
+.sx-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.sx-controls .segmented { max-width: 100%; overflow-x: auto; }
+.sx-subhead { font-size: 14px; font-weight: 680; color: var(--text); }
+.sx-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; font-size: 12px; color: var(--text-2); }
+.sx-legend span, .sx-legend button { display: inline-flex; align-items: center; gap: 6px; }
+.sx-legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.sx-dash { width: 16px; height: 0; border-top: 2px dashed var(--text-3); flex: none; }
+.sx-legend-toggle button { padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-solid); color: var(--text); font-size: 12px; font-weight: 620; cursor: pointer; transition: opacity var(--t-med, .2s) ease, background var(--t-med, .2s) ease; }
+.sx-legend-toggle button[aria-pressed='false'] { opacity: .5; text-decoration: line-through; background: var(--surface-2); }
+.sx-legend-toggle button:focus-visible, .sx-person:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.sx-figure { margin: 0; }
+.sx-figure .recharts-surface { overflow: visible; }
+.sx-figure .recharts-wrapper:focus, .sx-figure svg:focus { outline: none; }
+.sx-empty { padding: 32px 0; text-align: center; font-size: 13px; }
+
+.chart-tooltip.sx-tip { display: grid; gap: 3px; min-width: 160px; max-width: 260px; }
+.chart-tooltip.sx-tip div { gap: 6px; }
+.chart-tooltip.sx-tip b { color: var(--text); font-variant-numeric: tabular-nums; font-weight: 700; }
+.chart-tooltip.sx-tip span { color: var(--text-2); }
+.chart-tooltip .sx-key { width: 12px; height: 3px; border-radius: 2px; }
+
+.sx-person { width: 100%; text-align: left; border: 1px solid transparent; cursor: pointer; color: inherit; font: inherit; transition: opacity var(--t-med, .2s) ease, border-color var(--t-med, .2s) ease; }
+.sx-person:hover { border-color: var(--line-strong, var(--line)); }
+.sx-person.is-selected { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, var(--surface-2)); }
+.sx-person.is-dim { opacity: .55; }
+.sx-person strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.sx-detail { position: relative; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 12px; padding: 12px 44px 12px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); animation: sx-in .25s ease both; }
+.sx-detail-main { display: grid; min-width: 0; }
+.sx-detail-main small { font-size: 12px; color: var(--text-3); }
+.sx-detail dl { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin: 0; }
+.sx-detail dl div { display: grid; gap: 2px; }
+.sx-detail dt { font-size: 12px; color: var(--text-3); }
+.sx-detail dd { margin: 0; display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; font-size: 13px; font-weight: 650; color: var(--text); font-variant-numeric: tabular-nums; }
+.sx-detail dd small { font-size: 12px; font-weight: 500; color: var(--text-3); }
+.sx-close { position: absolute; top: 8px; right: 8px; min-width: 32px; padding: 5px; }
+.sx-note { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; color: var(--text-2); }
+
+.sx-insight { display: grid; gap: 6px; padding: 12px 14px; border-left: 3px solid var(--primary); border-radius: 0 10px 10px 0; background: var(--surface-2); }
+.sx-insight p { margin: 0; font-size: 13px; line-height: 1.5; color: var(--text); }
+.sx-stats td, .sx-stats th { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sx-gini { display: inline-block; vertical-align: middle; width: 40px; height: 6px; margin-right: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.sx-gini i { display: block; height: 100%; border-radius: 3px; background: var(--primary); transition: width .6s ease; }
+
+@keyframes sx-in { from { opacity: 0; transform: translateY(4px); } }
+@media (prefers-reduced-motion: reduce) { .sx-detail { animation: none; } .sx-gini i, .sx-person { transition: none; } }
+@media (max-width: 600px) {
+  .sx-controls { justify-content: flex-start; }
+  .sx-gini { display: none; }
+}

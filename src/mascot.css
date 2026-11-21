@@ -1,0 +1,113 @@
+/* ===== Flo, the Flow relay-ball guide (landing page only) ===== */
+.flo-guide { position: relative; display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); align-items: center; gap: 28px; padding: 28px 32px; border-radius: 20px; border: 1px solid var(--line); background: radial-gradient(90% 120% at 0% 50%, color-mix(in srgb, #FFA77C 18%, transparent), transparent 60%), var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+.flo-stage { position: relative; display: grid; place-items: center; min-height: 250px; }
+.flo-halo { position: absolute; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, #B9ADFF 45%, transparent), transparent 70%); animation: flo-halo 5s ease-in-out infinite alternate; }
+@keyframes flo-halo { to { transform: scale(1.08); opacity: .75; } }
+.flo { position: relative; overflow: visible; }
+
+/* idle life */
+.flo-float { animation: flo-float 3.2s ease-in-out infinite; transform-origin: 110px 200px; }
+@keyframes flo-float { 50% { transform: translateY(-8px); } }
+.flo-shadow { animation: flo-shadow 3.2s ease-in-out infinite; transform-origin: 110px 222px; }
+@keyframes flo-shadow { 50% { transform: scaleX(.82); opacity: .1; } }
+.flo-eyes { transform-origin: 110px 112px; animation: flo-blink 4.6s infinite; }
+@keyframes flo-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+.flo-eyes.look-up { translate: 3px -4px; }
+
+/* arms by mood */
+.flo-arm-right { transform-origin: 168px 124px; transition: transform .45s var(--ease-spring); }
+.flo-arm-wave { animation: flo-wave 1.3s ease-in-out infinite; }
+@keyframes flo-wave { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-22deg); } 75% { transform: rotate(14deg); } }
+.flo-arm-point { transform: rotate(52deg); }
+.flo-arm-think { transform: rotate(-38deg); }
+.flo-arm-shield { transform: rotate(30deg); }
+.flo-arm-cheer { transform: rotate(-8deg); animation: flo-cheer .9s ease-in-out infinite alternate; }
+@keyframes flo-cheer { to { transform: rotate(-22deg); } }
+.flo-arm-left { transform-origin: 52px 128px; transition: transform .45s var(--ease-spring); }
+.flo-arm-left.up { transform: rotate(118deg); animation: flo-cheer-left .9s ease-in-out infinite alternate; }
+@keyframes flo-cheer-left { to { transform: rotate(132deg); } }
+.flo-baton { transition: transform .45s var(--ease-spring); }
+.flo-thought circle { animation: flo-bubble 1.8s ease-in-out infinite; }
+.flo-thought circle:nth-child(2) { animation-delay: .2s; } .flo-thought circle:nth-child(3) { animation-delay: .4s; }
+@keyframes flo-bubble { 50% { transform: translateY(-3px); opacity: .6; } }
+.flo-shield { animation: flo-pop .5s var(--ease-spring) both; transform-origin: 52px 146px; }
+.flo-sparkles path { animation: flo-twinkle 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.flo-sparkles path:nth-child(2) { animation-delay: .3s; } .flo-sparkles path:nth-child(3) { animation-delay: .6s; }
+@keyframes flo-twinkle { 50% { transform: scale(.4) rotate(40deg); opacity: .4; } }
+@keyframes flo-pop { from { transform: scale(0); } }
+
+/* speech bubble */
+.flo-talk { display: grid; gap: 14px; min-width: 0; }
+.flo-bubble { position: relative; display: grid; gap: 8px; padding: 20px 22px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface-solid); box-shadow: var(--shadow-sm); animation: flo-say .45s var(--ease) both; }
+.flo-bubble::before { content: ""; position: absolute; left: -9px; top: 40px; width: 16px; height: 16px; background: inherit; border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
+@keyframes flo-say { from { opacity: 0; transform: translateX(-8px) scale(.98); } }
+.flo-kicker { font-size: 12px; font-weight: 700; letter-spacing: .02em; color: var(--primary-text); }
+.flo-bubble h2 { font-size: clamp(18px, 2vw, 22px); font-weight: 750; letter-spacing: -0.02em; line-height: 1.3; word-break: keep-all; }
+.flo-bubble p { font-size: 14px; line-height: 1.65; color: var(--text-2); word-break: keep-all; }
+.flo-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.flo-actions:empty { display: none; }
+.flo-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.flo-dots { display: flex; gap: 6px; }
+.flo-dots button { width: 8px; height: 8px; padding: 0; border-radius: 99px; border: 0; background: var(--line-strong); cursor: pointer; transition: width .3s var(--ease), background .3s; }
+.flo-dots button.on { width: 24px; background: var(--primary); }
+.flo-dots button:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.flo-play { margin-left: auto; }
+
+/* the section Flo points at glows briefly */
+.flo-flash { animation: flo-flash 1.4s var(--ease); border-radius: var(--radius); }
+@keyframes flo-flash { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 30% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 35%, transparent); } }
+
+:root[data-theme='dark'] .flo-guide { background: radial-gradient(90% 120% at 0% 50%, color-mix(in srgb, #FFA77C 10%, transparent), transparent 60%), var(--surface); }
+
+@media (max-width: 760px) {
+  .flo-guide { grid-template-columns: 1fr; padding: 20px; gap: 8px; }
+  .flo-stage { min-height: 200px; }
+  .flo-stage .flo { width: 170px; height: auto; }
+  .flo-bubble::before { left: 50%; top: -9px; transform: translateX(-50%) rotate(135deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flo-float, .flo-shadow, .flo-eyes, .flo-halo, .flo-arm-wave, .flo-arm-cheer, .flo-thought circle, .flo-sparkles path { animation: none !important; }
+}
+.about [id^='about-'] { scroll-margin-top: 84px; }
+
+/* Korean-law section (landing page) */
+.law-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 0; }
+.law-card { display: flex; gap: 12px; padding: 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface-solid); transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.law-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.law-icon { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border-radius: 10px; background: var(--primary-soft); color: var(--primary-text); }
+.law-name { display: block; font-size: 13.5px; font-weight: 700; color: var(--text); word-break: keep-all; }
+.law-rule { margin-top: 2px; font-size: 12.5px; color: var(--text-3); word-break: keep-all; }
+.law-flow { display: flex; gap: 6px; margin-top: 8px; font-size: 13px; line-height: 1.6; color: var(--text-2); word-break: keep-all; }
+.law-flow svg { flex-shrink: 0; margin-top: 4px; color: var(--focus); }
+.law-note { margin-top: 12px; font-size: 12px; color: var(--text-3); word-break: keep-all; }
+@media (max-width: 760px) { .law-grid { grid-template-columns: 1fr; } }
+
+/* Chapter chips under Flo's intro bubble */
+.flo-chapters { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.flo-chapters button { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 6px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface-solid); font: inherit; font-size: 12.5px; font-weight: 600; color: var(--text-2); cursor: pointer; transition: transform .2s var(--ease), border-color .2s, color .2s; }
+.flo-chapters button:hover { transform: translateY(-1px); border-color: var(--primary); color: var(--primary-text); }
+.flo-chapters button span { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; color: #fff; background: var(--primary); }
+
+/* Spotlight tour */
+.flo-tour { position: fixed; inset: 0; z-index: 1000; }
+.flo-tour-scrim { position: absolute; inset: 0; }
+.flo-spot { position: fixed; border-radius: 18px; pointer-events: none; box-shadow: 0 0 0 2px color-mix(in srgb, #B9ADFF 85%, transparent), 0 0 0 9999px rgba(14, 9, 28, .62); transition: top .5s var(--ease), left .5s var(--ease), width .5s var(--ease), height .5s var(--ease); animation: flo-spot-in .35s var(--ease) both; }
+.flo-spot::after { content: ""; position: absolute; inset: -6px; border-radius: 22px; border: 2px solid #B9ADFF; opacity: .6; animation: flo-spot-pulse 1.8s ease-out infinite; }
+@keyframes flo-spot-in { from { opacity: 0; } }
+@keyframes flo-spot-pulse { from { transform: scale(.98); opacity: .7; } to { transform: scale(1.03); opacity: 0; } }
+.flo-tour-card { position: fixed; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 4px 14px; padding: 16px 18px 14px 12px; border-radius: 20px; background: var(--surface-solid); border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(14, 9, 28, .55); outline: none; transition: top .5s var(--ease), left .5s var(--ease), bottom .5s var(--ease); animation: flo-say .4s var(--ease) both; }
+.flo-tour-mascot { grid-row: span 2; align-self: start; margin-top: -30px; }
+.flo-tour-text { display: grid; gap: 4px; padding-right: 26px; animation: flo-say .35s var(--ease) both; }
+.flo-tour-text h2 { font-size: 17px; font-weight: 750; letter-spacing: -0.02em; line-height: 1.35; word-break: keep-all; }
+.flo-tour-text p { font-size: 13.5px; line-height: 1.6; color: var(--text-2); word-break: keep-all; }
+.flo-tour-close { position: absolute; top: 8px; right: 8px; }
+.flo-tour-nav { grid-column: 2; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.flo-tour-nav .flo-dots { margin-right: auto; }
+.flo-tour-nav .flo-dots span { display: block; width: 6px; height: 6px; border-radius: 99px; background: var(--line-strong); transition: width .3s var(--ease), background .3s; }
+.flo-tour-nav .flo-dots span.on { width: 18px; background: var(--primary); }
+@media (max-width: 640px) {
+  .flo-tour-card { grid-template-columns: 70px minmax(0, 1fr); padding: 14px 14px 12px 8px; }
+  .flo-tour-mascot .flo { width: 70px; height: auto; }
+  .flo-tour-nav { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { .flo-spot, .flo-spot::after, .flo-tour-card, .flo-tour-text { animation: none !important; transition: none !important; } }

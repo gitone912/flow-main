@@ -1,0 +1,10 @@
+/node_modules
+/dist
+/docs
+/backup
+/.env
+/.env.*
+*.zip
+*.docx
+/fake_employee.csv
+/logo.png
