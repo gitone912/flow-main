@@ -18,3 +18,7 @@ Thumbs.db
 .vscode/
 
 .vercel
+
+# Duplicate of docs/ and internal prompts with the old project name
+/submission/
+SkillRelay_Build_Prompt.md
