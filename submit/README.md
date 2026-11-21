@@ -7,7 +7,7 @@
 | Source Code Repository URL · Deployment URL | `03_URL.md` |
 
 ## 제출 전 확인
-- [ ] `01_입력내용.md`의 **선택 주제**를 대회 주제명으로 입력
+- [x] 선택 주제: TRACK 2 · 소상공인 경영 문제 해결
 - [x] GitHub 저장소 push 완료 (https://github.com/gitone912/flow-main) · 시크릿 창에서 Public 접근 확인
 - [ ] 시크릿 창에서 배포 URL이 로그인 없이 열리는지 확인
 - [ ] 배포 사이트의 “4시간 데모”가 후보를 보여주는지 확인 (공유 DB에 이전 승인 기록이 남아 있으면 “워크스페이스 초기화” 필요)
